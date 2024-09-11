@@ -36,7 +36,7 @@ export function CaseStudyComp() {
           </h1>
         </div>
         <div className="flex items-center justify-center gap-14 flex-wrap">
-          {portflioCards?.map((portflio, index) => {
+          {portflioCards?.map((portflio) => {
             return (
               <>
                 <div

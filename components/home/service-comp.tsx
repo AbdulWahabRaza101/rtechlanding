@@ -8,7 +8,6 @@ import {
 } from "react";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, type PanInfo } from "framer-motion";
-import { MoveLeft, MoveRight } from "lucide-react";
 
 import { cn } from "@nextui-org/theme";
 import { Button } from "@nextui-org/button";
@@ -55,7 +54,7 @@ export function ServiceComp() {
   const containerRef = useRef<HTMLUListElement>(null);
   const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
   const [activeSlide, setActiveSlide] = useState(START_INDEX);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
   const canScrollPrev = activeSlide > 0;
   const canScrollNext = activeSlide < articles.length - 1;
   const offsetX = useMotionValue(0);
@@ -202,31 +201,6 @@ export function ServiceComp() {
     }
   }
 
-  function scrollPrev() {
-    //prevent scrolling past first item
-    if (!canScrollPrev) return;
-
-    const nextWidth = itemsRef.current
-      .at(activeSlide - 1)
-      ?.getBoundingClientRect().width;
-    if (nextWidth === undefined) return;
-    offsetX.set(offsetX.get() + nextWidth);
-
-    setActiveSlide((prev) => prev - 1);
-  }
-  function scrollNext() {
-    // prevent scrolling past last item
-    if (!canScrollNext) return;
-
-    const nextWidth = itemsRef.current
-      .at(activeSlide + 1)
-      ?.getBoundingClientRect().width;
-    if (nextWidth === undefined) return;
-    offsetX.set(offsetX.get() - nextWidth);
-
-    setActiveSlide((prev) => prev + 1);
-  }
-
   const [hoverType, setHoverType] = useState<"prev" | "next" | "click" | null>(
     null
   );
@@ -242,26 +216,6 @@ export function ServiceComp() {
     stiffness: 400,
     mass: 0.1,
   });
-
-  function navButtonHover({
-    currentTarget,
-    clientX,
-    clientY,
-  }: ReactMouseEvent<HTMLButtonElement, MouseEvent>) {
-    const parent = currentTarget.offsetParent;
-    if (!parent) return;
-    const { left: parentLeft, top: parentTop } = parent.getBoundingClientRect();
-
-    const { left, top, width, height } = currentTarget.getBoundingClientRect();
-    const centerX = left + width / 2;
-    const centerY = top + height / 2;
-
-    const offsetFromCenterX = clientX - centerX;
-    const offsetFromCenterY = clientY - centerY;
-
-    mouseX.set(left - parentLeft + offsetFromCenterX / 4);
-    mouseY.set(top - parentTop + offsetFromCenterY / 4);
-  }
 
   function disableDragClick(e: ReactMouseEvent<HTMLAnchorElement>) {
     if (isDragging) {
@@ -289,6 +243,14 @@ export function ServiceComp() {
   useEffect(() => {
     if (windowWidth < 800) {
       setActiveSlide(0);
+    }
+  }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }
   }, []);
   return (
@@ -428,38 +390,6 @@ export function ServiceComp() {
                 );
               })}
             </motion.ul>
-            {/* <button
-              type="button"
-              className="max-md:hidden group absolute left-[24%] top-1/3 z-20 grid aspect-square place-content-center rounded-full transition-colors"
-              style={{
-                width: CURSOR_SIZE,
-                height: CURSOR_SIZE,
-              }}
-              onClick={scrollPrev}
-              disabled={!canScrollPrev}
-              onMouseEnter={() => setHoverType("prev")}
-              onMouseMove={(e) => navButtonHover(e)}
-              onMouseLeave={() => setHoverType(null)}
-            >
-              <span className="sr-only">Previous Guide</span>
-              <MoveLeft className="h-10 w-10 stroke-[1.5] transition-colors group-enabled:group-hover:text-white group-disabled:opacity-50" />
-            </button>
-            <button
-              type="button"
-              className="max-md:hidden group absolute right-[24%] top-1/3 z-20 grid aspect-square place-content-center rounded-full transition-colors"
-              style={{
-                width: CURSOR_SIZE,
-                height: CURSOR_SIZE,
-              }}
-              onClick={scrollNext}
-              disabled={!canScrollNext}
-              onMouseEnter={() => setHoverType("next")}
-              onMouseMove={(e) => navButtonHover(e)}
-              onMouseLeave={() => setHoverType(null)}
-            >
-              <span className="sr-only">Next Guide</span>
-              <MoveRight className="h-10 w-10 stroke-[1.5] transition-colors group-enabled:group-hover:text-white group-disabled:opacity-50" />
-            </button> */}
           </div>
         </div>
       </section>

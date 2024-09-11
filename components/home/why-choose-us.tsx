@@ -39,7 +39,7 @@ export function WhyChooseUsComp() {
           </h1>
         </div>
         <div className="flex items-center justify-center gap-14 flex-wrap pt-4">
-          {whyChoosCards?.map((whyUs, index) => {
+          {whyChoosCards?.map((whyUs) => {
             return (
               <>
                 <div

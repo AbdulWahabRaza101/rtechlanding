@@ -47,7 +47,7 @@ const MarqueeItem: React.FC<MarqueeItemProps> = ({ children, speed }) => {
 
   useEffect(() => {
     loopStart();
-  }, []);
+  }, [loopStart]);
 
   return (
     <motion.div className="flex" ref={itemRef}>
@@ -114,7 +114,7 @@ export const InteractiveMarquee: React.FC<MarqueeProps> = ({
     speedSpring.set(0);
   };
 
-  const handleOnDrag = (_: any, info: PanInfo) => {
+  const handleOnDrag = (_: unknown, info: PanInfo) => {
     speedSpring.set(dragFactor * -info.delta.x);
   };
 
