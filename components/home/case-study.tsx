@@ -1,24 +1,27 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
 import Image from "next/image";
 
 const portflioCards = [
   {
     img: "/assets/home/portfolio/web.svg",
+    category: "Development",
     title: "Web Development",
   },
   {
     img: "/assets/home/portfolio/web.svg",
-    title: "Web Development",
+    category: "Design",
+    title: "UI UX Designing",
   },
   {
     img: "/assets/home/portfolio/web.svg",
-    title: "Web Development",
+    category: "Development",
+    title: "Mobile App Development",
   },
   {
     img: "/assets/home/portfolio/web.svg",
-    title: "Web Development",
+    category: "Design",
+    title: "Graphic Designing",
   },
 ];
 
@@ -36,16 +39,21 @@ export function CaseStudyComp() {
           {portflioCards?.map((portflio, index) => {
             return (
               <>
-                <div className="flex flex-col items-start gap-3">
+                <div
+                  key={portflio.title}
+                  className="flex flex-col items-start gap-2 text-white"
+                >
                   <Image
                     src={portflio.img}
                     alt={portflio.title}
-                    key={portflio.title}
                     width={400}
                     height={500}
                     className="object-cover rounded-[14px]"
                   />
-                  <h1></h1>
+                  <h1 className="ps-3">{portflio.category}</h1>
+                  <h1 className="text-h3 ps-3 leading-[24px]">
+                    {portflio.title}
+                  </h1>
                 </div>
               </>
             );
