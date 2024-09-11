@@ -25,7 +25,7 @@ export function TeamComp() {
             project.
           </p>
         </div>
-        <div className="flex items-center justify-center gap-14">
+        <div className="flex items-center justify-center gap-32">
           {teamCards?.map((member, index) => {
             return (
               <>
@@ -33,8 +33,8 @@ export function TeamComp() {
                   src={member.img}
                   alt={member.title}
                   key={member.title}
-                  width={index === 0 ? 400 : 300}
-                  height={index === 0 ? 500 : 400}
+                  width={index === 0 ? 500 : 300}
+                  height={index === 0 ? 600 : 400}
                   className="object-cover rounded-[14px]"
                 />
               </>

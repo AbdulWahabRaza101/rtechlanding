@@ -13,9 +13,9 @@ export const HeroComp = () => {
         loop
         muted
       />
-      <div className="px-7">
+      <div>
         <Navbar />
-        <div className="h-[70vh] flex flex-col justify-center ms-[10%]">
+        <div className="h-[70vh] flex flex-col justify-center ms-[10%] px-7">
           <div className="flex flex-col items-start gap-4">
             <div className="text-white md:max-w-[50%] flex flex-col gap-4">
               <h5>Let’s shift your business</h5>

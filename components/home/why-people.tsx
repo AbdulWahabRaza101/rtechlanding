@@ -80,12 +80,11 @@ export function WhyPeopleComp() {
       </div>
 
       <div className="relative flex items-center w-full">
-        {/* Cards Wrapper */}
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden mx-32">
           <div
-            className="flex transition-transform duration-500 ease-in-out mx-32"
+            className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${(startSlide / cards.length) * 100}%)`,
+              transform: `translateX(-${startSlide * (100 / visibleCards)}%)`,
             }}
           >
             {cards.map((card, index) => (
@@ -127,13 +126,13 @@ export function WhyPeopleComp() {
 
         {/* Left Arrow */}
         <ArrowLeft
-          className="w-8 h-8 absolute left-0 top-1/2 transform -translate-y-1/2 cursor-pointer"
+          className="w-8 h-8 absolute left-[12px] top-1/2 transform -translate-y-1/2 cursor-pointer"
           onClick={handlePrevSlide}
         />
 
         {/* Right Arrow */}
         <ArrowRight
-          className="w-8 h-8 absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer"
+          className="w-8 h-8 absolute right-[12px] top-1/2 transform -translate-y-1/2 cursor-pointer"
           onClick={handleNextSlide}
         />
       </div>
