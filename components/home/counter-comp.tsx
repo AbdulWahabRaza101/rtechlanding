@@ -29,16 +29,16 @@ const milestonesList = [
 export const CounterComp = () => {
   return (
     <div
-      className="h-[330px] flex flex-col items-center justify-center border-t-white border-t-[1px] border-b-white border-b-[1px]"
+      className="h-[330px] sm:h[400px] flex flex-col items-center justify-center border-t-white border-t-[1px] border-b-white border-b-[1px]"
       style={{
         background: "linear-gradient(183.26deg, #6294BB 6.74%, #3B586E 97.35%)",
       }}
     >
-      <div className="flex flex-col items-center text-center justify-center text-white max-w-[300px]">
+      <div className="flex flex-col items-center text-center justify-center text-white max-w-[300px] px-4">
         <h1 className="text-h1 max-md:text-h3 font-[500]">Milestones</h1>
         <p className="max-md:text-[12px]">What have we achieved so far</p>
       </div>
-      <div className="mt-16 flex flex-wrap justify-center gap-32">
+      <div className="mt-8 flex flex-col md:flex-row flex-wrap justify-center gap-8 md:gap-16 px-4">
         {milestonesList.map((milestone, index) => (
           <div
             key={index}
@@ -53,12 +53,12 @@ export const CounterComp = () => {
               {milestone.prefix}{" "}
               <CountUp
                 end={parseInt(milestone.value.replace("%", ""))}
-                duration={2}
+                duration={4}
                 separator=","
               />
               {milestone.value.includes("%") ? "%" : ""}
             </motion.div>
-            <p>{milestone.metric}</p>
+            <p className="text-sm md:text-base">{milestone.metric}</p>
           </div>
         ))}
       </div>
