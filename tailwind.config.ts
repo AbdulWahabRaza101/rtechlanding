@@ -18,6 +18,7 @@ const config: Config = {
       },
       fontSize: {
         h1: "42px",
+        h2: "36px",
         h3: "24px"
       },
     },

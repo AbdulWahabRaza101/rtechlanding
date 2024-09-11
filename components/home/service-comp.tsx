@@ -55,7 +55,7 @@ export function ServiceComp() {
   const containerRef = useRef<HTMLUListElement>(null);
   const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
   const [activeSlide, setActiveSlide] = useState(START_INDEX);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const canScrollPrev = activeSlide > 0;
   const canScrollNext = activeSlide < articles.length - 1;
   const offsetX = useMotionValue(0);
@@ -168,7 +168,7 @@ export function ServiceComp() {
       const item = itemsRef.current[i];
       if (item === null) continue;
 
-      const itemWidth = item.getBoundingClientRect().width;
+      const itemWidth = item?.getBoundingClientRect().width ?? FALLBACK_WIDTH;
 
       const prevItemWidth =
         itemsRef.current[i - 1]?.getBoundingClientRect().width ??
@@ -428,7 +428,7 @@ export function ServiceComp() {
                 );
               })}
             </motion.ul>
-            <button
+            {/* <button
               type="button"
               className="max-md:hidden group absolute left-[24%] top-1/3 z-20 grid aspect-square place-content-center rounded-full transition-colors"
               style={{
@@ -459,7 +459,7 @@ export function ServiceComp() {
             >
               <span className="sr-only">Next Guide</span>
               <MoveRight className="h-10 w-10 stroke-[1.5] transition-colors group-enabled:group-hover:text-white group-disabled:opacity-50" />
-            </button>
+            </button> */}
           </div>
         </div>
       </section>

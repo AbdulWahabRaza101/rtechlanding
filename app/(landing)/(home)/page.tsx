@@ -1,3 +1,4 @@
+import { CaseStudyComp } from "@/components/home/case-study";
 import { CounterComp } from "@/components/home/counter-comp";
 import { HeroComp } from "@/components/home/hero-comp";
 import { ServiceComp } from "@/components/home/service-comp";
@@ -8,9 +9,10 @@ const Page = () => {
     <>
       <main>
         <HeroComp />
-        {/* <CounterComp /> */}
         <ServiceComp />
+        <CounterComp />
         <TeamComp />
+        <CaseStudyComp />
       </main>
     </>
   );
