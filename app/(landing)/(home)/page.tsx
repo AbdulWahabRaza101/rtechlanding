@@ -6,6 +6,7 @@ import { ServiceComp } from "@/components/home/service-comp";
 import { TeamComp } from "@/components/home/team-comp";
 import { WhyChooseUsComp } from "@/components/home/why-choose-us";
 import { WhyPeopleComp } from "@/components/home/why-people";
+import { GetInTouchComp } from "@/components/home/get-in-touch";
 import React from "react";
 const Page = () => {
   return (
@@ -19,6 +20,7 @@ const Page = () => {
         <MarqueeComp />
         <WhyChooseUsComp />
         <WhyPeopleComp />
+        <GetInTouchComp />
       </main>
     </>
   );
