@@ -17,7 +17,8 @@ const config: Config = {
         secondary: "#35B24D" // Secondary text color
       },
       fontSize: {
-        h1: "42px", // Custom h1 font size
+        h1: "42px",
+        h3: "24px"
       },
     },
   },

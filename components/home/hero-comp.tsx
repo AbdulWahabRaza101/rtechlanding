@@ -19,7 +19,7 @@ export const HeroComp = () => {
           <div className="flex flex-col items-start gap-4">
             <div className="text-white md:max-w-[50%] flex flex-col gap-4">
               <h5>Let’s shift your business</h5>
-              <h1 className="text-h1 leading-[52px]">
+              <h1 className="text-h1 leading-[52px] font-[500]">
                 Are you ready to elevate your business growth to the next level?
               </h1>
               <p>
@@ -28,7 +28,10 @@ export const HeroComp = () => {
                 end- to-end web based apps development life cycle to meet each
                 business’ needs.
               </p>
-              <Button color="primary" size="lg" className="uppercase w-[250px]">
+              <Button
+                size="lg"
+                className="uppercase w-[250px] bg-primary text-white"
+              >
                 GET Started
               </Button>
             </div>

@@ -35,7 +35,7 @@ const Navbar = () => {
           className="objcet-cover"
           alt="logo"
         />
-        <aside className="flex items-center gap-7">
+        <aside className="flex items-center gap-7 max-md:hidden">
           {navLinks?.map((link) => {
             return (
               <>
@@ -49,7 +49,7 @@ const Navbar = () => {
               </>
             );
           })}
-          <Button color="primary" className="py-4 px-6 rounded-[7px]">
+          <Button className="py-4 px-6 rounded-[7px] bg-primary text-white">
             Let's Chat
           </Button>
         </aside>
