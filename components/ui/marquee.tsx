@@ -65,7 +65,7 @@ type MarqueeProps = {
 };
 
 export const InteractiveMarquee: React.FC<MarqueeProps> = ({
-  speed = 2, // Increased speed
+  speed = 0.8, // Increased speed
   threshold = 0.01,
   wheelFactor = 2,
   dragFactor = 1.5,
@@ -114,7 +114,7 @@ export const InteractiveMarquee: React.FC<MarqueeProps> = ({
     speedSpring.set(0);
   };
 
-  const handleOnDrag = (_, info: PanInfo) => {
+  const handleOnDrag = (_: any, info: PanInfo) => {
     speedSpring.set(dragFactor * -info.delta.x);
   };
 
@@ -156,7 +156,7 @@ export const InteractiveMarquee: React.FC<MarqueeProps> = ({
       >
         {/* Two MarqueeItems for continuous scrolling */}
         <MarqueeItem speed={speedSpring}>{children}</MarqueeItem>
-        <MarqueeItem speed={speedSpring}>{children}</MarqueeItem>
+        {/* <MarqueeItem speed={speedSpring}>{children}</MarqueeItem> */}
       </motion.div>
     </>
   );
